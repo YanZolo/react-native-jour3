@@ -8,28 +8,25 @@ export default function List(props) {
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    //for put word in bold in a string, <B>in bold</B>
+    //for bold word into a string, <B> text in bold</B>
     const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
 
-    //
     const renderCountries = ({ item }) => (
-        <View style={styles.textItem}>
+        <ScrollView contentContainerStyle={styles.container}>
             <TouchableOpacity
                 onPress={() => {
                     setIsModalVisible(true)
                     setSelectedCountry(item)
                 }}
             >
-                <Text >
+                <Text style={styles.textItem}>
                     <B>Country name:</B> {item.name}{'\n'}
                     <B>Capital:</B> {item.capital}{'\n'}
                     <B>Region:</B> {item.region}
                 </Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     )
-
-
 
     useEffect(() => {
 
@@ -41,9 +38,6 @@ export default function List(props) {
             })
     }, [])
 
-    //console.log(isModalVisible);
-
-    //if (countries) console.log(countries)
     return (
         <ScrollView contentContainerStyle={styles.container}>
             {countries.length === 0 && loading && (
@@ -62,9 +56,7 @@ export default function List(props) {
                 <LanguagesModal
                     languages={selectedCountry.languages}
                     visible={isModalVisible}
-                    onClose={() => setIsModalVisible(false)}
-                    countries
-                    setCountries
+                    onClose={() => setIsModalVisible(false)}                  
                 />
             )}
         </ScrollView>
@@ -73,39 +65,13 @@ export default function List(props) {
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 50,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        marginTop: 50,
+        backgroundColor: '#fff',       
     },
     textItem: {
-        padding: 15,
-        marginBottom: 10,
+        padding: 15,       
         backgroundColor: '#e6e6fa',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-
+      
     }
 });
 
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'center'
-//     },
-//     textItem: {
-//         padding: 15,
-//         marginBottom: 10,
-//         backgroundColor: '#e6e6fa',
-//         // alignItems: 'center',
-//         // justifyContent: 'center',
-
-//     }, 
-//     loading: {
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'center'
-//     },
-
-// })

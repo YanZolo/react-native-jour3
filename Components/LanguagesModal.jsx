@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Text, FlatList, Modal, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 
 export default function LanguagesModal(props) {
-    //console.log('from languageModal:',props.isModalVisible)
-    // console.log('from languageModal:', props.languages);
+    //console.log('from languageModal isModalVisible:',props.isModalVisible)
+    console.log('from languageModal:', props.languages);
 
     const renderLanguages = ({ item }) => (
-        <Pressable onPress={() => console.log(props)}>
+        <Pressable onPress={() =>props} >
             <Text style={styles.item}>{item.name}</Text>
         </Pressable>
 
